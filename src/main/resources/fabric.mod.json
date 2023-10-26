@@ -20,6 +20,9 @@
 		],
 		"client": [
 			"io.github.adamraichu.sw_arcade.StarWarsArcadeModeClient"
+		],
+		"sw_arcade": [
+			"io.github.adamraichu.sw_arcade.plugin.ExamplePlugin"
 		]
 	},
 	"mixins": [

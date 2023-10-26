@@ -7,6 +7,7 @@ import com.mojang.brigadier.CommandDispatcher;
 
 import io.github.adamraichu.sw_arcade.commands.ConfigurationCommands;
 import io.github.adamraichu.sw_arcade.config.JsonGameConfig;
+import io.github.adamraichu.sw_arcade.plugin.PluginManager;
 import io.github.adamraichu.sw_arcade.registry.EntityRegistry;
 import io.github.adamraichu.sw_arcade.registry.ItemRegistry;
 import net.fabricmc.api.ModInitializer;
@@ -16,8 +17,8 @@ import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.mob.PathAwareEntity;
-import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.command.CommandManager.RegistrationEnvironment;
+import net.minecraft.server.command.ServerCommandSource;
 import software.bernie.geckolib.GeckoLib;
 
 public class StarWarsArcadeMode implements ModInitializer {
@@ -34,6 +35,8 @@ public class StarWarsArcadeMode implements ModInitializer {
 		FabricDefaultAttributeRegistry.register(EntityRegistry.EVIL_CLONE, getGenericAttributes());
 		GeckoLib.initialize();
 		CommandRegistrationCallback.EVENT.register(StarWarsArcadeMode::registerCommands);
+
+		PluginManager.initPlugins();
 	}
 
 	private static DefaultAttributeContainer.Builder getGenericAttributes() {
