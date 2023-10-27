@@ -10,6 +10,7 @@ import io.github.adamraichu.sw_arcade.config.JsonGameConfig;
 import io.github.adamraichu.sw_arcade.plugin.PluginManager;
 import io.github.adamraichu.sw_arcade.registry.EntityRegistry;
 import io.github.adamraichu.sw_arcade.registry.ItemRegistry;
+import io.github.adamraichu.sw_arcade.registry.SoundRegistry;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
@@ -31,7 +32,8 @@ public class StarWarsArcadeMode implements ModInitializer {
 		LOGGER.info("Config version: " + config.$VERSION);
 		new EntityRegistry();
 		new ItemRegistry();
-		FabricDefaultAttributeRegistry.register(EntityRegistry.CLONE_SQUAD_LEADER, getGenericAttributes());
+		new SoundRegistry();
+		FabricDefaultAttributeRegistry.register(EntityRegistry.CLONE_SQUAD_LEADER, AttributeContainer.CLONE_SQUAD_LEADER);
 		FabricDefaultAttributeRegistry.register(EntityRegistry.EVIL_CLONE, getGenericAttributes());
 		GeckoLib.initialize();
 		CommandRegistrationCallback.EVENT.register(StarWarsArcadeMode::registerCommands);
@@ -52,5 +54,15 @@ public class StarWarsArcadeMode implements ModInitializer {
 			CommandRegistryAccess access,
 			RegistrationEnvironment evn) {
 		ConfigurationCommands.register(dispatcher);
+	}
+
+	public static class AttributeContainer {
+		public static final DefaultAttributeContainer.Builder CLONE_SQUAD_LEADER = PathAwareEntity
+				.createLivingAttributes()
+				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25)
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0D)
+				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 5)
+				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 160.0D)
+				.add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 0.1);
 	}
 }

@@ -1,6 +1,7 @@
 package io.github.adamraichu.sw_arcade.entity;
 
 import io.github.adamraichu.sw_arcade.entity.helpers.AbstractGoodGuy;
+import io.github.adamraichu.sw_arcade.registry.SoundRegistry;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.RangedAttackMob;
@@ -8,7 +9,6 @@ import net.minecraft.entity.ai.goal.LookAroundGoal;
 import net.minecraft.entity.ai.goal.LookAtEntityGoal;
 import net.minecraft.entity.ai.goal.ProjectileAttackGoal;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.Vec3d;
@@ -35,7 +35,7 @@ public class BlasterCloneSquadLeader extends AbstractGoodGuy implements RangedAt
   @Override
   protected void initGoals() {
     super.initGoals();
-    this.goalSelector.add(4, new ProjectileAttackGoal(this, 1.0, 20, 15.0f));
+    this.goalSelector.add(4, new ProjectileAttackGoal(this, 1.0, 20, 5.0f));
     this.goalSelector.add(6, new LookAtEntityGoal(this, PlayerEntity.class, 8.0f));
     this.goalSelector.add(6, new LookAroundGoal(this));
   }
@@ -64,7 +64,7 @@ public class BlasterCloneSquadLeader extends AbstractGoodGuy implements RangedAt
     double g = target.getZ() - this.getZ();
     double h = Math.sqrt(e * e + g * g) * (double) 0.2f;
     projectile.setVelocity(e, f + h, g, 1.6f, 0.5f);
-    this.playSound(SoundEvents.ENTITY_SNOW_GOLEM_SHOOT, 1.0f, 0.4f / (this.getRandom().nextFloat() * 0.4f + 0.8f));
+    this.playSound(SoundRegistry.CLONE_BLASTER_FIRE, 1.0f, 0.4f / (this.getRandom().nextFloat() * 0.4f + 0.8f));
     this.getWorld().spawnEntity(projectile);
   }
 }

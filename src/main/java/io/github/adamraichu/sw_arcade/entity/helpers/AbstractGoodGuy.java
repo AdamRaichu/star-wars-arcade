@@ -1,6 +1,5 @@
 package io.github.adamraichu.sw_arcade.entity.helpers;
 
-import io.github.adamraichu.sw_arcade.entity.EvilCloneTest;
 import io.github.adamraichu.sw_arcade.game.Team.Republic;
 import io.github.adamraichu.sw_arcade.game.Team.Separatists;
 import net.minecraft.entity.EntityType;
@@ -14,6 +13,7 @@ public abstract class AbstractGoodGuy extends TeamAwareEntity<Republic> {
 
   @Override
   protected void initGoals() {
-    this.targetSelector.add(1, new ActiveTargetGoal<EvilCloneTest>(this, EvilCloneTest.class, false));
+    this.targetSelector.add(1, new ActiveTargetGoal<AbstractBadGuy>(this, AbstractBadGuy.class, 10, false, true,
+        entity -> entity instanceof AbstractBadGuy));
   }
 }

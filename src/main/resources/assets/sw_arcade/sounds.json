@@ -1,0 +1,8 @@
+{
+  "clone_blaster": {
+    "subtitle": "subtitles.sw_arcade.clone_blaster",
+    "sounds": [
+      "sw_arcade:clone_blaster"
+    ]
+  }
+}
