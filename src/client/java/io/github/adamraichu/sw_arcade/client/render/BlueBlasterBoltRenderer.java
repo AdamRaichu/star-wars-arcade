@@ -3,7 +3,7 @@ package io.github.adamraichu.sw_arcade.client.render;
 import java.util.Objects;
 
 import io.github.adamraichu.sw_arcade.client.model.BlueBlasterBoltModel;
-import io.github.adamraichu.sw_arcade.entity.BlueBlasterBoltEntity;
+import io.github.adamraichu.sw_arcade.entity.projectile.BlueBlasterBoltEntity;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRendererFactory.Context;

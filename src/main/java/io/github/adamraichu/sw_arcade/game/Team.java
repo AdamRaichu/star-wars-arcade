@@ -1,6 +1,6 @@
 package io.github.adamraichu.sw_arcade.game;
 
-import io.github.adamraichu.sw_arcade.entity.helpers.TeamAwareEntity;
+import io.github.adamraichu.sw_arcade.entity.helper.TeamAwareEntity;
 
 public abstract class Team {
   public final String name;

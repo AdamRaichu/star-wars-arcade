@@ -9,7 +9,7 @@ import io.github.adamraichu.sw_arcade.StarWarsArcadeMode;
 import net.fabricmc.loader.api.FabricLoader;
 
 public class JsonGameConfig {
-  public static final int VERSION = 4;
+  public static final int VERSION = 5;
   public static File configFile = FabricLoader.getInstance().getConfigDir()
       .resolve(StarWarsArcadeMode.MOD_ID + ".json")
       .toFile();
@@ -81,6 +81,9 @@ public class JsonGameConfig {
     if (cv <= 3) {
       config.commands.config.reset.shouldBroadcastFeedback = true;
     }
+    if (cv <= 4) {
+      config.cannonDamage = 3;
+    }
     config.$VERSION = VERSION;
     return config;
   }
@@ -88,6 +91,7 @@ public class JsonGameConfig {
   public static class GameConfig {
     public int $VERSION = JsonGameConfig.VERSION;
     public int blasterDamage = 1;
+    public int cannonDamage = 3;
     public boolean ignoreFriendlyFire = true;
     public Commands commands = new Commands();
 

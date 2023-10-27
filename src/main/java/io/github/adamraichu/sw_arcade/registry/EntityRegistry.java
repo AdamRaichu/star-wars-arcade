@@ -4,8 +4,9 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import io.github.adamraichu.sw_arcade.StarWarsArcadeMode;
 import io.github.adamraichu.sw_arcade.entity.BlasterCloneSquadLeader;
-import io.github.adamraichu.sw_arcade.entity.BlueBlasterBoltEntity;
 import io.github.adamraichu.sw_arcade.entity.EvilCloneTest;
+import io.github.adamraichu.sw_arcade.entity.projectile.BlueBlasterBoltEntity;
+import io.github.adamraichu.sw_arcade.entity.projectile.BlueCannonBoltEntity;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityDimensions;
@@ -19,6 +20,8 @@ public class EntityRegistry {
       "clone_evil", EvilCloneTest::new, 0.6f, 1.8f);
   public static final EntityType<BlueBlasterBoltEntity> BLUE_BLASTER_BOLT = registerEntity(
       "blue_blaster_bolt", BlueBlasterBoltEntity::new, 0.125f, 0.125f);
+  public static final EntityType<BlueCannonBoltEntity> BLUE_CANNON_BOLT = registerEntity("blue_cannon_bolt",
+      BlueCannonBoltEntity::new, 0.25f, 0.25f);
 
   public static <T extends Entity> EntityType<T> registerEntity(String name, EntityType.EntityFactory<T> entity,
       float width, float height) {

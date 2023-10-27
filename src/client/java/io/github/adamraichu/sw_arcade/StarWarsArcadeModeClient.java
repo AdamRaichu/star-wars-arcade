@@ -3,6 +3,7 @@ package io.github.adamraichu.sw_arcade;
 import com.mojang.brigadier.CommandDispatcher;
 
 import io.github.adamraichu.sw_arcade.client.render.BlueBlasterBoltRenderer;
+import io.github.adamraichu.sw_arcade.client.render.BlueCannonBoltRenderer;
 import io.github.adamraichu.sw_arcade.client.render.DefaultCloneRenderer;
 import io.github.adamraichu.sw_arcade.client.render.EvilCloneRenderer;
 import io.github.adamraichu.sw_arcade.registry.EntityRegistry;
@@ -24,6 +25,8 @@ public class StarWarsArcadeModeClient implements ClientModInitializer {
 		EntityRendererRegistry.register(EntityRegistry.CLONE_SQUAD_LEADER, DefaultCloneRenderer::new);
 		EntityRendererRegistry.register(EntityRegistry.EVIL_CLONE, EvilCloneRenderer::new);
 		EntityRendererRegistry.register(EntityRegistry.BLUE_BLASTER_BOLT, BlueBlasterBoltRenderer::new);
+		EntityRendererRegistry.register(EntityRegistry.BLUE_CANNON_BOLT, BlueCannonBoltRenderer::new);
+
 		GeckoLibNetwork.registerClientReceiverPackets();
 
 		ClientCommandRegistrationCallback.EVENT.register(StarWarsArcadeModeClient::registerCommands);

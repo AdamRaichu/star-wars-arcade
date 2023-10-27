@@ -1,6 +1,7 @@
 package io.github.adamraichu.sw_arcade.entity;
 
-import io.github.adamraichu.sw_arcade.entity.helpers.AbstractGoodGuy;
+import io.github.adamraichu.sw_arcade.entity.helper.AbstractGoodGuy;
+import io.github.adamraichu.sw_arcade.entity.projectile.BlueBlasterBoltEntity;
 import io.github.adamraichu.sw_arcade.registry.SoundRegistry;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;

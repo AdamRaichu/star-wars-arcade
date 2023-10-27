@@ -1,6 +1,6 @@
 package io.github.adamraichu.sw_arcade.entity;
 
-import io.github.adamraichu.sw_arcade.entity.helpers.AbstractBadGuy;
+import io.github.adamraichu.sw_arcade.entity.helper.AbstractBadGuy;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.World;
 import software.bernie.geckolib.core.animation.AnimatableManager.ControllerRegistrar;

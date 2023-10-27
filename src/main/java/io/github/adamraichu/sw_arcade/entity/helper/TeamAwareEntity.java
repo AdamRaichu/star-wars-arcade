@@ -1,4 +1,4 @@
-package io.github.adamraichu.sw_arcade.entity.helpers;
+package io.github.adamraichu.sw_arcade.entity.helper;
 
 import io.github.adamraichu.sw_arcade.game.Team;
 import net.minecraft.entity.EntityType;
