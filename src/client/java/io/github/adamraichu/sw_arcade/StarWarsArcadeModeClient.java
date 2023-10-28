@@ -5,7 +5,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import io.github.adamraichu.sw_arcade.client.render.BlueBlasterBoltRenderer;
 import io.github.adamraichu.sw_arcade.client.render.BlueCannonBoltRenderer;
 import io.github.adamraichu.sw_arcade.client.render.DefaultCloneRenderer;
-import io.github.adamraichu.sw_arcade.client.render.EvilCloneRenderer;
+import io.github.adamraichu.sw_arcade.client.render.BlasterDroidSquadLeaderRenderer;
 import io.github.adamraichu.sw_arcade.registry.EntityRegistry;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
@@ -23,7 +23,7 @@ public class StarWarsArcadeModeClient implements ClientModInitializer {
 		// rendering.
 
 		EntityRendererRegistry.register(EntityRegistry.CLONE_SQUAD_LEADER, DefaultCloneRenderer::new);
-		EntityRendererRegistry.register(EntityRegistry.EVIL_CLONE, EvilCloneRenderer::new);
+		EntityRendererRegistry.register(EntityRegistry.EVIL_CLONE, BlasterDroidSquadLeaderRenderer::new);
 		EntityRendererRegistry.register(EntityRegistry.BLUE_BLASTER_BOLT, BlueBlasterBoltRenderer::new);
 		EntityRendererRegistry.register(EntityRegistry.BLUE_CANNON_BOLT, BlueCannonBoltRenderer::new);
 

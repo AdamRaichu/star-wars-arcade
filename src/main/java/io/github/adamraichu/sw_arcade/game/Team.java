@@ -1,5 +1,7 @@
 package io.github.adamraichu.sw_arcade.game;
 
+import java.util.Objects;
+
 import io.github.adamraichu.sw_arcade.entity.helper.TeamAwareEntity;
 
 public abstract class Team {
@@ -11,6 +13,9 @@ public abstract class Team {
   }
 
   public static boolean hasTeam(Object obj) {
+    if (Objects.isNull(obj)) {
+      return false;
+    }
     return TeamAwareEntity.class.isAssignableFrom(obj.getClass());
   }
 

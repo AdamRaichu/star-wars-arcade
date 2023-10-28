@@ -5,8 +5,8 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.world.World;
 import software.bernie.geckolib.core.animation.AnimatableManager.ControllerRegistrar;
 
-public class EvilCloneTest extends AbstractBadGuy {
-  public EvilCloneTest(EntityType<? extends AbstractBadGuy> type, World worldIn) {
+public class BlasterDroidSquadLeader extends AbstractBadGuy {
+  public BlasterDroidSquadLeader(EntityType<? extends AbstractBadGuy> type, World worldIn) {
     super(type, worldIn);
   }
 
