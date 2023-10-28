@@ -33,8 +33,8 @@ public class StarWarsArcadeMode implements ModInitializer {
 		new EntityRegistry();
 		new ItemRegistry();
 		new SoundRegistry();
-		FabricDefaultAttributeRegistry.register(EntityRegistry.CLONE_SQUAD_LEADER, AttributeContainer.CLONE_SQUAD_LEADER);
-		FabricDefaultAttributeRegistry.register(EntityRegistry.EVIL_CLONE, getGenericAttributes());
+		FabricDefaultAttributeRegistry.register(EntityRegistry.CLONE_SQUAD_LEADER, AttributeContainer.SQUAD_LEADER);
+		FabricDefaultAttributeRegistry.register(EntityRegistry.DROID_SQUAD_LEADER, AttributeContainer.SQUAD_LEADER);
 		GeckoLib.initialize();
 		CommandRegistrationCallback.EVENT.register(StarWarsArcadeMode::registerCommands);
 
@@ -57,10 +57,10 @@ public class StarWarsArcadeMode implements ModInitializer {
 	}
 
 	public static class AttributeContainer {
-		public static final DefaultAttributeContainer.Builder CLONE_SQUAD_LEADER = PathAwareEntity
+		public static final DefaultAttributeContainer.Builder SQUAD_LEADER = PathAwareEntity
 				.createLivingAttributes()
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25)
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0D)
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 5.0D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 5)
 				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 160.0D)
 				.add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 0.1);

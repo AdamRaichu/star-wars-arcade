@@ -16,7 +16,7 @@ import net.minecraft.entity.SpawnGroup;
 public class EntityRegistry {
     public static final EntityType<BlasterCloneSquadLeader> CLONE_SQUAD_LEADER = registerEntity(
             "blaster_clone_squad_leader", BlasterCloneSquadLeader::new, 0.6f, 1.8f);
-    public static final EntityType<BlasterDroidSquadLeader> EVIL_CLONE = registerEntity(
+    public static final EntityType<BlasterDroidSquadLeader> DROID_SQUAD_LEADER = registerEntity(
             "blaster_droid_squad_leader", BlasterDroidSquadLeader::new, 0.6f, 1.8f);
     public static final EntityType<BlueBlasterBoltEntity> BLUE_BLASTER_BOLT = registerEntity(
             "blue_blaster_bolt", BlueBlasterBoltEntity::new, 0.125f, 0.125f);

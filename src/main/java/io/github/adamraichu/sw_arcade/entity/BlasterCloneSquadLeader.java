@@ -10,27 +10,13 @@ import net.minecraft.entity.ai.goal.LookAroundGoal;
 import net.minecraft.entity.ai.goal.LookAtEntityGoal;
 import net.minecraft.entity.ai.goal.ProjectileAttackGoal;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import software.bernie.geckolib.core.animation.AnimatableManager;
-import software.bernie.geckolib.core.animation.AnimationController;
-import software.bernie.geckolib.core.animation.RawAnimation;
 
 public class BlasterCloneSquadLeader extends AbstractGoodGuy implements RangedAttackMob {
-  private boolean shouldShoot = false;
 
   public BlasterCloneSquadLeader(EntityType<? extends BlasterCloneSquadLeader> type, World world) {
     super(type, world);
-  }
-
-  @Override
-  public ActionResult interactAt(PlayerEntity player, Vec3d hitPos, Hand hand) {
-    if (hand.equals(Hand.MAIN_HAND)) {
-      this.shouldShoot = true;
-    }
-    return super.interactAt(player, hitPos, hand);
   }
 
   @Override
@@ -43,17 +29,6 @@ public class BlasterCloneSquadLeader extends AbstractGoodGuy implements RangedAt
 
   @Override
   public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-    controllers.add(new AnimationController<>(this, 10, state -> state.setAndContinue(getShootAnimation())));
-  }
-
-  private RawAnimation getShootAnimation() {
-    if (this.shouldShoot) {
-      this.shouldShoot = false;
-      return RawAnimation
-          .begin()
-          .thenPlay("clone_default.point_and_shoot");
-    }
-    return null;
   }
 
   @Override

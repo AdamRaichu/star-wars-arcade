@@ -23,7 +23,7 @@ public class StarWarsArcadeModeClient implements ClientModInitializer {
 		// rendering.
 
 		EntityRendererRegistry.register(EntityRegistry.CLONE_SQUAD_LEADER, DefaultCloneRenderer::new);
-		EntityRendererRegistry.register(EntityRegistry.EVIL_CLONE, BlasterDroidSquadLeaderRenderer::new);
+		EntityRendererRegistry.register(EntityRegistry.DROID_SQUAD_LEADER, BlasterDroidSquadLeaderRenderer::new);
 		EntityRendererRegistry.register(EntityRegistry.BLUE_BLASTER_BOLT, BlueBlasterBoltRenderer::new);
 		EntityRendererRegistry.register(EntityRegistry.BLUE_CANNON_BOLT, BlueCannonBoltRenderer::new);
 
