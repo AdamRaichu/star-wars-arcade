@@ -14,6 +14,8 @@ import net.minecraft.world.World;
 import software.bernie.geckolib.core.animation.AnimatableManager.ControllerRegistrar;
 
 public class BlasterDroidSquadLeader extends AbstractBadGuy implements RangedAttackMob {
+  private float range = 5;
+
   public BlasterDroidSquadLeader(EntityType<? extends AbstractBadGuy> type, World worldIn) {
     super(type, worldIn);
   }
@@ -26,13 +28,16 @@ public class BlasterDroidSquadLeader extends AbstractBadGuy implements RangedAtt
   @Override
   protected void initGoals() {
     super.initGoals();
-    this.goalSelector.add(4, new ProjectileAttackGoal(this, 1.0, 20, 5.0f));
+    this.goalSelector.add(4, new ProjectileAttackGoal(this, 1.0, 20, this.range));
     this.goalSelector.add(6, new LookAtEntityGoal(this, PlayerEntity.class, 8.0f));
     this.goalSelector.add(6, new LookAroundGoal(this));
   }
 
   @Override
   public void shootAt(LivingEntity target, float pullProgress) {
+    if (this.squaredDistanceTo(target) > this.range * this.range) {
+      return;
+    }
     BlueBlasterBoltEntity projectile = new BlueBlasterBoltEntity(this.getWorld(), this);
     double d = target.getEyeY() - (double) 2.1f;
     double e = target.getX() - this.getX();
