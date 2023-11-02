@@ -7,6 +7,6 @@ import software.bernie.geckolib.model.DefaultedEntityGeoModel;
 
 public class BlasterDroidSquadLeaderModel extends DefaultedEntityGeoModel<BlasterDroidSquadLeader> {
   public BlasterDroidSquadLeaderModel() {
-    super(new Identifier(StarWarsArcadeMode.MOD_ID, "b1_default"), true);
+    super(new Identifier(StarWarsArcadeMode.MOD_ID, "b1_default"), false);
   }
 }
