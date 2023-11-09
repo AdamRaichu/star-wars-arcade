@@ -3,15 +3,16 @@
 	"id": "sw_arcade",
 	"version": "${version}",
 	"name": "Star Wars: Arcade Mode",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "A \"minigame\" based on the arcade mode from Lego Star Wars III: The Clone Wars.",
 	"authors": [
-		"Me!"
+		"AdamRaichu"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://modrinth.com/mod/sw_arcade",
+		"sources": "https://github.com/AdamRaichu/star-wars-arcade",
+		"issues": "https://github.com/AdamRaichu/star-wars-arcade/issues"
 	},
-	"license": "CC0-1.0",
+	"license": "LGPL-3.0-only",
 	"icon": "assets/sw_arcade/icon.png",
 	"environment": "*",
 	"entrypoints": {
