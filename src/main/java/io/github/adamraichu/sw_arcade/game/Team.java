@@ -3,6 +3,7 @@ package io.github.adamraichu.sw_arcade.game;
 import java.util.Objects;
 
 import io.github.adamraichu.sw_arcade.entity.helper.TeamAwareEntity;
+import net.minecraft.entity.player.PlayerEntity;
 
 public abstract class Team {
   public final String name;
@@ -28,6 +29,12 @@ public abstract class Team {
       return false;
     }
     return ((TeamAwareEntity<?>) obj1).getTeam().equals(((TeamAwareEntity<?>) obj2).getTeam());
+  }
+
+  public static boolean areSameTeam(PlayerEntity player, TeamAwareEntity<?> entity) {
+    Team playerTeam = GameInstance.getCurrent().playerTeamMap.get(player);
+    Team entityTeam = entity.getTeam();
+    return Objects.isNull(playerTeam) ? false : playerTeam.equals(entityTeam);
   }
 
   public static class Republic extends Team {

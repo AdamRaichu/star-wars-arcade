@@ -5,6 +5,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import io.github.adamraichu.sw_arcade.client.render.BlueBlasterBoltRenderer;
 import io.github.adamraichu.sw_arcade.client.render.BlueCannonBoltRenderer;
 import io.github.adamraichu.sw_arcade.client.render.DefaultCloneRenderer;
+import io.github.adamraichu.sw_arcade.client.render.Av7CannonRenderer;
 import io.github.adamraichu.sw_arcade.client.render.BlasterDroidSquadLeaderRenderer;
 import io.github.adamraichu.sw_arcade.registry.EntityRegistry;
 import net.fabricmc.api.ClientModInitializer;
@@ -19,21 +20,23 @@ public class StarWarsArcadeModeClient implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient() {
-		// This entrypoint is suitable for setting up client-specific logic, such as
-		// rendering.
-
-		EntityRendererRegistry.register(EntityRegistry.CLONE_SQUAD_LEADER, DefaultCloneRenderer::new);
-		EntityRendererRegistry.register(EntityRegistry.DROID_SQUAD_LEADER, BlasterDroidSquadLeaderRenderer::new);
-		EntityRendererRegistry.register(EntityRegistry.BLUE_BLASTER_BOLT, BlueBlasterBoltRenderer::new);
-		EntityRendererRegistry.register(EntityRegistry.BLUE_CANNON_BOLT, BlueCannonBoltRenderer::new);
 
 		GeckoLibNetwork.registerClientReceiverPackets();
 
+		registerRenderers();
 		ClientCommandRegistrationCallback.EVENT.register(StarWarsArcadeModeClient::registerCommands);
 	}
 
 	public static void registerCommands(CommandDispatcher<FabricClientCommandSource> dispatcher,
 			CommandRegistryAccess access) {
 		WriteExampleWorldCommand.register(dispatcher);
+	}
+
+	private static void registerRenderers() {
+		EntityRendererRegistry.register(EntityRegistry.CLONE_SQUAD_LEADER, DefaultCloneRenderer::new);
+		EntityRendererRegistry.register(EntityRegistry.DROID_SQUAD_LEADER, BlasterDroidSquadLeaderRenderer::new);
+		EntityRendererRegistry.register(EntityRegistry.BLUE_BLASTER_BOLT, BlueBlasterBoltRenderer::new);
+		EntityRendererRegistry.register(EntityRegistry.BLUE_CANNON_BOLT, BlueCannonBoltRenderer::new);
+		EntityRendererRegistry.register(EntityRegistry.AV7_CANNON, Av7CannonRenderer::new);
 	}
 }

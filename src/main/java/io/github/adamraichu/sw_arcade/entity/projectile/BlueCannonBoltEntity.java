@@ -27,7 +27,7 @@ public class BlueCannonBoltEntity extends ThrownItemEntity implements GeoEntity 
   }
 
   public BlueCannonBoltEntity(World world, LivingEntity owner) {
-    super((EntityType<? extends ThrownItemEntity>) EntityRegistry.BLUE_BLASTER_BOLT, owner, world);
+    super((EntityType<? extends ThrownItemEntity>) EntityRegistry.BLUE_CANNON_BOLT, owner, world);
     this.config = JsonGameConfig.getConfig();
   }
 

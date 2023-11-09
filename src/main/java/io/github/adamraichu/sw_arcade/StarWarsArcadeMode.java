@@ -35,6 +35,9 @@ public class StarWarsArcadeMode implements ModInitializer {
 		new SoundRegistry();
 		FabricDefaultAttributeRegistry.register(EntityRegistry.CLONE_SQUAD_LEADER, AttributeContainer.SQUAD_LEADER);
 		FabricDefaultAttributeRegistry.register(EntityRegistry.DROID_SQUAD_LEADER, AttributeContainer.SQUAD_LEADER);
+		FabricDefaultAttributeRegistry.register(EntityRegistry.AV7_CANNON,
+				AttributeContainer.getBuildingAttributes(20.0D, 0.1));
+
 		GeckoLib.initialize();
 		CommandRegistrationCallback.EVENT.register(StarWarsArcadeMode::registerCommands);
 
@@ -64,5 +67,16 @@ public class StarWarsArcadeMode implements ModInitializer {
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 5)
 				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 160.0D)
 				.add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 0.1);
+		public static final DefaultAttributeContainer.Builder ABSTRACT_BUILDING = PathAwareEntity
+				.createLivingAttributes()
+				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0)
+				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0)
+				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 50.0D);
+
+		public static DefaultAttributeContainer.Builder getBuildingAttributes(double health, double kb) {
+			return ABSTRACT_BUILDING
+					.add(EntityAttributes.GENERIC_MAX_HEALTH, health)
+					.add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, kb);
+		}
 	}
 }
