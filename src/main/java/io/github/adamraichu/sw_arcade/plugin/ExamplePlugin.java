@@ -31,4 +31,9 @@ public class ExamplePlugin implements SWAMP {
     return List.of();
   }
 
+  @Override
+  public PluginVersion API_VERSION() {
+    return PluginVersion.V1;
+  }
+
 }

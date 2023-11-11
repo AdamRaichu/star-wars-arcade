@@ -7,6 +7,6 @@ import software.bernie.geckolib.model.DefaultedEntityGeoModel;
 
 public class Av7CannonModel extends DefaultedEntityGeoModel<Av7Cannon> {
   public Av7CannonModel() {
-    super(new Identifier(StarWarsArcadeMode.MOD_ID, "av7_cannon"), false);
+    super(new Identifier(StarWarsArcadeMode.MOD_ID, "av7_cannon"), true);
   }
 }

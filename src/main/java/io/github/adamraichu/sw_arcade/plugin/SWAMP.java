@@ -24,6 +24,12 @@ import net.minecraft.item.ItemStack;
  */
 public interface SWAMP {
   /**
+   * @return The version of the plugin api that is implemented. Current version is
+   *         {@link io.github.adamraichu.sw_arcade.plugin.PluginVersion V1}.
+   */
+  public PluginVersion API_VERSION();
+
+  /**
    * @return A unique string used to identify the plugin to the main mod.
    *         You can create an issue on GitHub to get added to a list of available
    *         plugins.

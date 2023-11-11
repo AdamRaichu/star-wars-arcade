@@ -20,6 +20,10 @@ public abstract class Team {
     return TeamAwareEntity.class.isAssignableFrom(obj.getClass());
   }
 
+  public static boolean hasTeam(PlayerEntity player) {
+    return !Objects.isNull(GameInstance.getCurrent().playerTeamMap.get(player));
+  }
+
   public static boolean areBothTeamed(Object obj1, Object obj2) {
     return hasTeam(obj1) && hasTeam(obj2);
   }
@@ -31,8 +35,12 @@ public abstract class Team {
     return ((TeamAwareEntity<?>) obj1).getTeam().equals(((TeamAwareEntity<?>) obj2).getTeam());
   }
 
+  public static Team getPlayerTeam(PlayerEntity player) {
+    return GameInstance.getCurrent().playerTeamMap.get(player);
+  }
+
   public static boolean areSameTeam(PlayerEntity player, TeamAwareEntity<?> entity) {
-    Team playerTeam = GameInstance.getCurrent().playerTeamMap.get(player);
+    Team playerTeam = getPlayerTeam(player);
     Team entityTeam = entity.getTeam();
     return Objects.isNull(playerTeam) ? false : playerTeam.equals(entityTeam);
   }

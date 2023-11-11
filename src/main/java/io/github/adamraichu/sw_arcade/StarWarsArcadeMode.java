@@ -8,9 +8,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import io.github.adamraichu.sw_arcade.commands.ConfigurationCommands;
 import io.github.adamraichu.sw_arcade.config.JsonGameConfig;
 import io.github.adamraichu.sw_arcade.plugin.PluginManager;
-import io.github.adamraichu.sw_arcade.registry.EntityRegistry;
-import io.github.adamraichu.sw_arcade.registry.ItemRegistry;
-import io.github.adamraichu.sw_arcade.registry.SoundRegistry;
+import io.github.adamraichu.sw_arcade.registry.*;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
@@ -33,6 +31,8 @@ public class StarWarsArcadeMode implements ModInitializer {
 		new EntityRegistry();
 		new ItemRegistry();
 		new SoundRegistry();
+		new BlockRegistry();
+		new BlockRegistry.BlockEntityRegistry();
 		FabricDefaultAttributeRegistry.register(EntityRegistry.CLONE_SQUAD_LEADER, AttributeContainer.SQUAD_LEADER);
 		FabricDefaultAttributeRegistry.register(EntityRegistry.DROID_SQUAD_LEADER, AttributeContainer.SQUAD_LEADER);
 		FabricDefaultAttributeRegistry.register(EntityRegistry.AV7_CANNON,
@@ -44,14 +44,14 @@ public class StarWarsArcadeMode implements ModInitializer {
 		PluginManager.initPlugins();
 	}
 
-	private static DefaultAttributeContainer.Builder getGenericAttributes() {
-		return PathAwareEntity.createLivingAttributes()
-				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25)
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0D)
-				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 5)
-				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 16.0D)
-				.add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 0.1);
-	}
+	// private static DefaultAttributeContainer.Builder getGenericAttributes() {
+	// return PathAwareEntity.createLivingAttributes()
+	// .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25)
+	// .add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0D)
+	// .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 5)
+	// .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 16.0D)
+	// .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 0.1);
+	// }
 
 	public static void registerCommands(CommandDispatcher<ServerCommandSource> dispatcher,
 			CommandRegistryAccess access,
