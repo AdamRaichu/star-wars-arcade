@@ -21,7 +21,7 @@ public abstract class Team {
   }
 
   public static boolean hasTeam(PlayerEntity player) {
-    return !Objects.isNull(GameInstance.getCurrent().playerTeamMap.get(player));
+    return !Objects.isNull(GameInstance.getCurrent().playerTeamMap.get(player.getUuid()));
   }
 
   public static boolean areBothTeamed(Object obj1, Object obj2) {
@@ -36,7 +36,7 @@ public abstract class Team {
   }
 
   public static Team getPlayerTeam(PlayerEntity player) {
-    return GameInstance.getCurrent().playerTeamMap.get(player);
+    return GameInstance.getCurrent().playerTeamMap.get(player.getUuid());
   }
 
   public static boolean areSameTeam(PlayerEntity player, TeamAwareEntity<?> entity) {

@@ -45,17 +45,17 @@ repositories {
 	}
 }
 
-loom {
-    splitEnvironmentSourceSets()
+// loom {
+//     splitEnvironmentSourceSets()
 
-	mods {
-		"sw_arcade" {
-			sourceSet sourceSets.main
-			sourceSet sourceSets.client
-		}
-	}
+// 	mods {
+// 		"sw_arcade" {
+// 			sourceSet sourceSets.main
+// 			sourceSet sourceSets.client
+// 		}
+// 	}
 
-}
+// }
 
 dependencies {
 	// To change the versions see the gradle.properties file
