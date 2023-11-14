@@ -10,4 +10,12 @@ This is my attempt at recreating the arcade mode found within Lego Star Wars III
 | :---: | :---: | :---: | :---: |
 | Example Plugin | `_example_plugin` | A simple plugin that doesn't really add any content, but demonstrates functionality. | [AdamRaichu/star-wars-arcade][example-plugin] |
 
+## Icon Attribution
+
+One or more icons were from flaticon.com and require attribution. Attribution is below.
+
+| Attribution | Icon Name |
+| --- | --- |
+| <a href="https://www.flaticon.com/free-icons/war" title="war icons">War icons created by Freepik - Flaticon</a> | `ground_cannon_icon` |
+
 [example-plugin]: https://github.com/AdamRaichu/star-wars-arcade/blob/main/src/main/java/io/github/adamraichu/sw_arcade/plugin/ExamplePlugin.java
