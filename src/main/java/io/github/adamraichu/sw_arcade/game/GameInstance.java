@@ -9,7 +9,7 @@ import net.minecraft.nbt.NbtCompound;
 public class GameInstance {
   private static GameInstance current;
 
-  public HashMap<UUID, Team> playerTeamMap;
+  public HashMap<UUID, Team> playerTeamMap = new HashMap<>();
 
   public static GameInstance getCurrent() {
     return current;
@@ -20,5 +20,7 @@ public class GameInstance {
   }
 
   public GameInstance(PlayerEntity good, PlayerEntity bad, NbtCompound nbt) {
+    this.playerTeamMap.put(good.getUuid(), Team.Republic.get());
+    this.playerTeamMap.put(bad.getUuid(), Team.Separatists.get());
   }
 }

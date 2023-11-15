@@ -49,7 +49,7 @@ public class ConfigurationCommands {
       timer = new Timer();
       hasTriedToReset = false;
       try {
-        JsonGameConfig.resetConfig$useWithCaution();
+        JsonGameConfig.resetConfig_useWithCaution();
       } catch (Exception e) {
         source.sendError(Text.literal("Error writing to config file."));
         return 0;

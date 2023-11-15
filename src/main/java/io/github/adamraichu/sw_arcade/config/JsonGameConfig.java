@@ -9,7 +9,7 @@ import io.github.adamraichu.sw_arcade.StarWarsArcadeMode;
 import net.fabricmc.loader.api.FabricLoader;
 
 public class JsonGameConfig {
-  public static final int VERSION = 5;
+  public static final int VERSION = 6;
   public static File configFile = FabricLoader.getInstance().getConfigDir()
       .resolve(StarWarsArcadeMode.MOD_ID + ".json")
       .toFile();
@@ -56,7 +56,7 @@ public class JsonGameConfig {
     currentConfig = config;
   }
 
-  public static void resetConfig$useWithCaution() throws Exception {
+  public static void resetConfig_useWithCaution() throws Exception {
     StarWarsArcadeMode.LOGGER.info("Resetting config file.");
     setConfig(new GameConfig());
     writeConfigFile(getConfig());
@@ -84,6 +84,11 @@ public class JsonGameConfig {
     if (cv <= 4) {
       config.cannonDamage = 3;
     }
+    if (cv <= 5) {
+      config.commands.startGame.requiredPermissionLevel = 2;
+      config.commands.startGame._default.allowExtraPlayers = false;
+      config.commands.startGame.comment_default = "`default` is a keyword in java";
+    }
     config.$VERSION = VERSION;
     return config;
   }
@@ -97,6 +102,7 @@ public class JsonGameConfig {
 
     public static class Commands {
       public Config config = new Config();
+      public StartGame startGame = new StartGame();
 
       public static class Config {
         public int requiredPermissionLevel = 2;
@@ -109,6 +115,16 @@ public class JsonGameConfig {
 
         public static class Reset {
           public boolean shouldBroadcastFeedback = true;
+        }
+      }
+
+      public static class StartGame {
+        public int requiredPermissionLevel = 2;
+        public String comment_default = "`default` is a keyword in java";
+        public Default _default = new Default();
+
+        public static class Default {
+          public boolean allowExtraPlayers = false;
         }
       }
     }
