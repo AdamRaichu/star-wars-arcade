@@ -7,7 +7,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtHelper;
 import net.minecraft.util.math.BlockPos;
 
-public class GameRepresentation {
+public class LocationData {
   private static NbtCompound example_world_nbt = new NbtCompound();
   /**
    * A map of a {@link Directions direction} to a BlockPos.
@@ -15,7 +15,7 @@ public class GameRepresentation {
    * values.
    */
   private static EnumMap<Directions, BlockPos> dirToOffsetMap = new EnumMap<>(Directions.class);
-  public static HashMap<String, GameRepresentation> nameToDataMap = new HashMap<>();
+  public static HashMap<String, LocationData> nameToDataMap = new HashMap<>();
 
   static {
     // Setup dirToOffsetMap
@@ -43,7 +43,7 @@ public class GameRepresentation {
     example_world_nbt.put("command_centers", commandCenters);
   }
 
-  public static final GameRepresentation example_world = new GameRepresentation(example_world_nbt);
+  public static final LocationData example_world = new LocationData(example_world_nbt);
 
   static {
     // Put representations in `nameToDataMap`.
@@ -52,7 +52,7 @@ public class GameRepresentation {
 
   public NbtCompound startGameDefaultNbt;
 
-  public GameRepresentation(NbtCompound nbt) {
+  public LocationData(NbtCompound nbt) {
     this.startGameDefaultNbt = nbt;
   }
 

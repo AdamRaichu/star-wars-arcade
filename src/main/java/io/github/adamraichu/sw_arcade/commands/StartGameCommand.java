@@ -11,7 +11,7 @@ import com.mojang.brigadier.context.CommandContext;
 import io.github.adamraichu.sw_arcade.config.JsonGameConfig;
 import io.github.adamraichu.sw_arcade.config.JsonGameConfig.GameConfig;
 import io.github.adamraichu.sw_arcade.game.GameInstance;
-import io.github.adamraichu.sw_arcade.game.GameRepresentation;
+import io.github.adamraichu.sw_arcade.game.LocationData;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
@@ -38,7 +38,7 @@ public class StartGameCommand {
       // any sorting at all (e.g. alphabetically), shuffle the list.
       Collections.shuffle(players);
       GameInstance.init(players.get(0), players.get(1),
-          GameRepresentation.nameToDataMap.get(worldName).startGameDefaultNbt);
+          LocationData.nameToDataMap.get(worldName).startGameDefaultNbt);
       return 1;
     }
 
