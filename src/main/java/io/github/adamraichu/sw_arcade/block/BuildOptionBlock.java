@@ -1,8 +1,10 @@
 package io.github.adamraichu.sw_arcade.block;
 
+import java.util.List;
 import java.util.Objects;
 
 import ca.landonjw.gooeylibs2.api.UIManager;
+import ca.landonjw.gooeylibs2.api.button.Button;
 import ca.landonjw.gooeylibs2.api.button.ButtonAction;
 import ca.landonjw.gooeylibs2.api.button.GooeyButton;
 import ca.landonjw.gooeylibs2.api.page.GooeyPage;
@@ -12,6 +14,7 @@ import io.github.adamraichu.sw_arcade.entity.building.cannon.Av7Cannon;
 import io.github.adamraichu.sw_arcade.entity.helper.TeamAwareEntity;
 import io.github.adamraichu.sw_arcade.registry.BlockRegistry;
 import io.github.adamraichu.sw_arcade.registry.EntityRegistry;
+import io.github.adamraichu.sw_arcade.registry.ItemRegistry;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
@@ -20,7 +23,6 @@ import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -65,25 +67,22 @@ public class BuildOptionBlock extends BlockWithEntity {
   }
 
   private GooeyPage getBuildOptionsPage(PlayerEntity player, BlockPos pos) {
-    GooeyButton.Builder bb = GooeyButton.builder();
+    List<Button> groundCannonButtons = List.of(GooeyButton.builder()
+        .display(new ItemStack(ItemRegistry.GROUND_CANNON_ICON))
+        .onClick((action) -> {
+          build(new Av7Cannon(EntityRegistry.AV7_CANNON, player.getWorld()), player,
+              pos, action);
+        })
+        .build());
+    ChestTemplate.Builder template = ChestTemplate.builder(8)
+        .rowFromList(0, Objects.requireNonNull(groundCannonButtons));
 
-    ChestTemplate template = ChestTemplate.builder(6)
-        .set(0, 0, bb
-            .display(new ItemStack(Items.IRON_BARS))
-            .onClick((action) -> {
-              build(new Av7Cannon(EntityRegistry.AV7_CANNON, player.getWorld()), player, pos, action);
-            })
-            .build())
-        .build();
-    Objects.requireNonNull(template);
     GooeyPage page = GooeyPage.builder()
-        .template(template)
+        .template(Objects.requireNonNull(template.build()))
         .title("Build")
         .build();
 
-    Objects.requireNonNull(page);
-
-    return page;
+    return Objects.requireNonNull(page);
   }
 
   private void build(TeamAwareEntity<?> building, PlayerEntity player, BlockPos pos, ButtonAction action) {
