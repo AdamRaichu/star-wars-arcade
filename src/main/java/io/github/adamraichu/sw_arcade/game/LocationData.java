@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtHelper;
+import net.minecraft.nbt.NbtList;
 import net.minecraft.util.math.BlockPos;
 
 public class LocationData {
@@ -31,6 +32,7 @@ public class LocationData {
 
   static {
     // For `example_world`
+    // TODO: Add actual values for command center base positions.
     NbtCompound goodGuyCenter = new NbtCompound();
     goodGuyCenter.put("pos", NbtHelper.fromBlockPos(new BlockPos(0, 0, 0)));
     NbtCompound badGuyCenter = new NbtCompound();
@@ -39,6 +41,9 @@ public class LocationData {
     NbtCompound commandCenters = new NbtCompound();
     commandCenters.put("good", goodGuyCenter);
     commandCenters.put("bad", badGuyCenter);
+
+    NbtList bases = new NbtList();
+    // TODO: Add values for base centers of all bases.
 
     example_world_nbt.put("command_centers", commandCenters);
   }
