@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Objects;
 
 import ca.landonjw.gooeylibs2.api.UIManager;
-import ca.landonjw.gooeylibs2.api.button.Button;
 import ca.landonjw.gooeylibs2.api.button.ButtonAction;
 import ca.landonjw.gooeylibs2.api.button.GooeyButton;
 import ca.landonjw.gooeylibs2.api.page.GooeyPage;
@@ -24,6 +23,7 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
@@ -67,22 +67,35 @@ public class BuildOptionBlock extends BlockWithEntity {
   }
 
   private GooeyPage getBuildOptionsPage(PlayerEntity player, BlockPos pos) {
-    List<Button> groundCannonButtons = List.of(GooeyButton.builder()
-        .display(new ItemStack(ItemRegistry.GROUND_CANNON_ICON))
-        .onClick((action) -> {
-          build(new Av7Cannon(EntityRegistry.AV7_CANNON, player.getWorld()), player,
-              pos, action);
-        })
-        .build());
-    ChestTemplate.Builder template = ChestTemplate.builder(8)
-        .rowFromList(0, Objects.requireNonNull(groundCannonButtons));
-
-    GooeyPage page = GooeyPage.builder()
-        .template(Objects.requireNonNull(template.build()))
-        .title("Build")
+    GooeyPage groundCannonsPage = GooeyPage.builder()
+        .template(Objects.requireNonNull(
+            ChestTemplate.builder(1).rowFromList(0, Objects.requireNonNull(List.of(
+                GooeyButton
+                    .builder()
+                    .display(new ItemStack(ItemRegistry.GROUND_CANNON_ICON))
+                    .title(Text.translatable(EntityRegistry.AV7_CANNON.getTranslationKey()))
+                    .onClick((action) -> {
+                      build(new Av7Cannon(EntityRegistry.AV7_CANNON, player.getWorld()), player, pos, action);
+                    })
+                    .build())))
+                .build()))
         .build();
 
-    return Objects.requireNonNull(page);
+    ChestTemplate.Builder template = ChestTemplate.builder(1)
+        .rowFromList(0, Objects.requireNonNull(List.of(GooeyButton.builder()
+            .display(new ItemStack(ItemRegistry.GROUND_CANNON_ICON))
+            .onClick((action) -> {
+              Objects.requireNonNull(player);
+              UIManager.closeUI((ServerPlayerEntity) player);
+              UIManager.openUIForcefully(((ServerPlayerEntity) player), Objects.requireNonNull(groundCannonsPage));
+            })
+            .build())));
+
+    // Check for number of bases and add appropriate buttons.
+
+    GooeyPage mainMenu = GooeyPage.builder().template(Objects.requireNonNull(template.build())).build();
+
+    return Objects.requireNonNull(mainMenu);
   }
 
   private void build(TeamAwareEntity<?> building, PlayerEntity player, BlockPos pos, ButtonAction action) {
