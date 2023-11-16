@@ -12,10 +12,12 @@ This is my attempt at recreating the arcade mode found within Lego Star Wars III
 
 ## Icon Attribution
 
-One or more icons were from flaticon.com and require attribution. Attribution is below.
+One or more icons used in this mod require attribution. The attribution messages for these icons are below.
 
 | Attribution | Icon Name |
 | --- | --- |
 | <a href="https://www.flaticon.com/free-icons/war" title="war icons">War icons created by Freepik - Flaticon</a> | `ground_cannon_icon` |
+| burst by Veronika Krpciarova from <a href="https://thenounproject.com/browse/icons/term/burst/" target="_blank" title="burst Icons">Noun Project</a> (CC BY 3.0) | `torpedo_generator_icon` (edited from original) |
+| <https://www.iconfinder.com/search?q=exclamation&iconset=font-awesome-solid-vol-2> (CC BY 3.0) - No attribution message specified | `extras_icon` |
 
 [example-plugin]: https://github.com/AdamRaichu/star-wars-arcade/blob/main/src/main/java/io/github/adamraichu/sw_arcade/plugin/ExamplePlugin.java
