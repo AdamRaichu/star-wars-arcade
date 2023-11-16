@@ -15,7 +15,7 @@ public class LocationData {
    * A BlockPos is used here because it is immutable, and only accepts integer
    * values.
    */
-  private static EnumMap<Directions, BlockPos> dirToOffsetMap = new EnumMap<>(Directions.class);
+  public static EnumMap<Directions, BlockPos> dirToOffsetMap = new EnumMap<>(Directions.class);
   public static HashMap<String, LocationData> nameToDataMap = new HashMap<>();
 
   static {
@@ -46,6 +46,7 @@ public class LocationData {
     // TODO: Add values for base centers of all bases.
 
     example_world_nbt.put("command_centers", commandCenters);
+    example_world_nbt.put("bases", bases);
   }
 
   public static final LocationData example_world = new LocationData(example_world_nbt);

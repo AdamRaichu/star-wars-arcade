@@ -6,9 +6,13 @@ import org.slf4j.LoggerFactory;
 import com.mojang.brigadier.CommandDispatcher;
 
 import io.github.adamraichu.sw_arcade.commands.ConfigurationCommands;
+import io.github.adamraichu.sw_arcade.commands.StartGameCommand;
 import io.github.adamraichu.sw_arcade.config.JsonGameConfig;
 import io.github.adamraichu.sw_arcade.plugin.PluginManager;
-import io.github.adamraichu.sw_arcade.registry.*;
+import io.github.adamraichu.sw_arcade.registry.BlockRegistry;
+import io.github.adamraichu.sw_arcade.registry.EntityRegistry;
+import io.github.adamraichu.sw_arcade.registry.ItemRegistry;
+import io.github.adamraichu.sw_arcade.registry.SoundRegistry;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
@@ -57,6 +61,7 @@ public class StarWarsArcadeMode implements ModInitializer {
 			CommandRegistryAccess access,
 			RegistrationEnvironment evn) {
 		ConfigurationCommands.register(dispatcher);
+		StartGameCommand.register(dispatcher);
 	}
 
 	public static class AttributeContainer {
