@@ -13,6 +13,11 @@ public abstract class Team {
     this.name = name;
   }
 
+  @Override
+  public boolean equals(Object obj) {
+    return obj instanceof Team ? this.name.equals(((Team) obj).name) : false;
+  }
+
   public static boolean hasTeam(Object obj) {
     if (Objects.isNull(obj)) {
       return false;
