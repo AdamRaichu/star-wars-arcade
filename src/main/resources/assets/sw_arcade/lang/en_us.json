@@ -3,5 +3,14 @@
   "entity.sw_arcade.blaster_clone_squad_leader": "Blaster Clone Squad Leader",
   "entity.sw_arcade.blaster_droid_squad_leader": "Blaster Droid Squad Leader",
   "entity.sw_arcade.av7_cannon": "AV-7 Anti-vehicle Artillery Cannon",
-  "item.sw_arcade.ground_cannon_icon": "Ground Cannons"
+  "entity.sw_arcade.av7_cannon_silver": "§7AV-7 Anti-vehicle Artillery Cannon - Silver",
+  "entity.sw_arcade.av7_cannon_gold": "§6AV-7 Anti-vehicle Artillery Cannon - Gold",
+  "item.sw_arcade.ground_cannon_icon": "Ground Cannons",
+  "item.sw_arcade.small_air_support_icon": "Small Air Support",
+  "item.sw_arcade.barracks_icon": "Barracks",
+  "item.sw_arcade.large_air_support_icon": "Large Air Support",
+  "item.sw_arcade.shield_generator_icon": "Shield Generators",
+  "item.sw_arcade.torpedo_generator_icon": "Torpedo Generator",
+  "item.sw_arcade.ray_shield_icon": "Ray Shields",
+  "item.sw_arcade.extras_icon": "Extras"
 }
