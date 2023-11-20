@@ -19,6 +19,8 @@ import net.minecraft.util.Identifier;
 public class BlockRegistry {
   public static final Block BUILD_OPTION_BLOCK = registerBlock("build_option_block",
       new BuildOptionBlock(FabricBlockSettings.copyOf(Blocks.BEDROCK)));
+  public static final Block BASE_CENTER_BLOCK = registerBlock("base_center_block",
+      new Block(FabricBlockSettings.copyOf(Blocks.BEDROCK)));
 
   private static Block registerBlock(String name, Block block) {
     registerBlockItem(name, block);

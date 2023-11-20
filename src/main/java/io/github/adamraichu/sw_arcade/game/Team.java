@@ -4,6 +4,8 @@ import java.util.Objects;
 
 import io.github.adamraichu.sw_arcade.entity.helper.TeamAwareEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 
 public abstract class Team {
   public final String name;
@@ -12,6 +14,8 @@ public abstract class Team {
   Team(String name) {
     this.name = name;
   }
+
+  public abstract Text getVictoryMessage();
 
   @Override
   public boolean equals(Object obj) {
@@ -40,8 +44,17 @@ public abstract class Team {
     return ((TeamAwareEntity<?>) obj1).getTeam().equals(((TeamAwareEntity<?>) obj2).getTeam());
   }
 
+  /**
+   * 
+   * @param player
+   * @return If there is a game in progress, the current team of the player. If no
+   *         game is in progress,
+   *         {@link Republic}.
+   * @see {@link GameInstance#playerTeamMap}
+   */
   public static Team getPlayerTeam(PlayerEntity player) {
-    return GameInstance.getCurrent().playerTeamMap.get(player.getUuid());
+    GameInstance current = GameInstance.getCurrent();
+    return Objects.isNull(current) ? Team.Republic.get() : current.playerTeamMap.get(player.getUuid());
   }
 
   public static boolean areSameTeam(PlayerEntity player, TeamAwareEntity<?> entity) {
@@ -60,6 +73,11 @@ public abstract class Team {
     public static Republic get() {
       return team;
     }
+
+    @Override
+    public Text getVictoryMessage() {
+      return Text.literal("Republic wins!").formatted(Formatting.BLUE);
+    }
   }
 
   public static class Separatists extends Team {
@@ -71,6 +89,11 @@ public abstract class Team {
 
     public static Separatists get() {
       return team;
+    }
+
+    @Override
+    public Text getVictoryMessage() {
+      return Text.literal("Separatists win!").formatted(Formatting.DARK_RED);
     }
   }
 }

@@ -37,8 +37,10 @@ public class StartGameCommand {
       // I'm not sure how World.getPlayers() list is organized. Just in case there's
       // any sorting at all (e.g. alphabetically), shuffle the list.
       Collections.shuffle(players);
-      GameInstance.init(players.get(0), players.get(1),
-          LocationData.nameToDataMap.get(worldName).startGameDefaultNbt);
+      GameInstance.init(players.get(0),
+          players.get(0), // FIXME: testing (should be 1 not 0)
+          LocationData.nameToDataMap.get(worldName).startGameDefaultNbt,
+          src.getWorld());
       return 1;
     }
 

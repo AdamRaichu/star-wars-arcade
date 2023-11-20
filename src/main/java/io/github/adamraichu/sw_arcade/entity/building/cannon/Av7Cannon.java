@@ -1,6 +1,5 @@
 package io.github.adamraichu.sw_arcade.entity.building.cannon;
 
-import io.github.adamraichu.sw_arcade.StarWarsArcadeMode;
 import io.github.adamraichu.sw_arcade.entity.helper.AbstractBadGuy;
 import io.github.adamraichu.sw_arcade.entity.helper.AbstractGoodGuy;
 import io.github.adamraichu.sw_arcade.entity.helper.Building;
@@ -43,7 +42,6 @@ public class Av7Cannon extends AbstractGoodGuy implements Building, RangedAttack
 
   @Override
   public void shootAt(LivingEntity target, float var2) {
-    StarWarsArcadeMode.LOGGER.info("Cannon shot");
     BlueCannonBoltEntity projectile = new BlueCannonBoltEntity(this.getWorld(), this);
     double d = target.getEyeY() - (double) 2.1f;
     double e = target.getX() - this.getX();

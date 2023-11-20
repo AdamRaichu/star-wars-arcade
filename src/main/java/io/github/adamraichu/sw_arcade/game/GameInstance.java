@@ -6,21 +6,27 @@ import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import com.google.common.collect.HashBasedTable;
+
+import io.github.adamraichu.sw_arcade.entity.helper.TeamAwareEntity;
 import io.github.adamraichu.sw_arcade.game.LocationData.Directions;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtHelper;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 public class GameInstance {
   private static GameInstance current;
 
   public HashMap<UUID, Team> playerTeamMap = new HashMap<>();
   public HashMap<BlockPos, Team> baseTeamMap = new HashMap<>();
+  public HashBasedTable<BlockPos, Directions, TeamAwareEntity<?>> buildingTrackerTable = HashBasedTable.create();
   private List<BlockPos> baseCenters = new ArrayList<>();
+  private World world;
 
-  public GameInstance(PlayerEntity good, PlayerEntity bad, NbtCompound nbt) {
+  public GameInstance(PlayerEntity good, PlayerEntity bad, NbtCompound nbt, World world) {
     this.playerTeamMap.put(good.getUuid(), Team.Republic.get());
     this.playerTeamMap.put(bad.getUuid(), Team.Separatists.get());
 
@@ -29,14 +35,16 @@ public class GameInstance {
       BlockPos pos = NbtHelper.toBlockPos(el);
       baseCenters.add(pos);
     });
+
+    this.world = world;
   }
 
   public static GameInstance getCurrent() {
     return current;
   }
 
-  public static void init(PlayerEntity good, PlayerEntity bad, NbtCompound nbt) {
-    current = new GameInstance(good, bad, nbt);
+  public static void init(PlayerEntity good, PlayerEntity bad, NbtCompound nbt, World world) {
+    current = new GameInstance(good, bad, nbt, world);
   }
 
   public BlockPos getCenterFor(BlockPos buildOptionBlock) {
@@ -67,5 +75,26 @@ public class GameInstance {
     });
 
     return count.get();
+  }
+
+  public int getBuildingsAtBase(BlockPos center) {
+    // int count = 0;
+    // for (Directions dir : Directions.values()) {
+    // TeamAwareEntity<?> entity = this.buildingTrackerTable.get(center, dir);
+    // if (!Objects.isNull(entity)) {
+    // ++count;
+    // }
+    // }
+
+    return this.buildingTrackerTable.row(center).size();
+
+    // return count;
+  }
+
+  public void declareWinner(Team winner) {
+    playerTeamMap.forEach((uuid, team) -> {
+      PlayerEntity player = world.getPlayerByUuid(uuid);
+      player.sendMessage(winner.getVictoryMessage());
+    });
   }
 }
