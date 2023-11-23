@@ -1,27 +1,42 @@
 package io.github.adamraichu.sw_arcade.entity.building.cannon;
 
+import org.joml.Vector3f;
+
 import io.github.adamraichu.sw_arcade.entity.helper.AbstractBadGuy;
 import io.github.adamraichu.sw_arcade.entity.helper.AbstractGoodGuy;
 import io.github.adamraichu.sw_arcade.entity.helper.Building;
 import io.github.adamraichu.sw_arcade.entity.projectile.BlueCannonBoltEntity;
+import io.github.adamraichu.sw_arcade.game.GameInstance;
 // import io.github.adamraichu.sw_arcade.game.Team; //Debug FIXME:
 import io.github.adamraichu.sw_arcade.game.Team.Republic;
 import io.github.adamraichu.sw_arcade.registry.SoundRegistry;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.RangedAttackMob;
 import net.minecraft.entity.ai.goal.ActiveTargetGoal;
 import net.minecraft.entity.ai.goal.ProjectileAttackGoal;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import software.bernie.geckolib.core.animation.AnimatableManager.ControllerRegistrar;
 
 public class Av7Cannon extends AbstractGoodGuy implements Building, RangedAttackMob {
+  private BlockPos baseCenter;
 
   public Av7Cannon(EntityType<? extends AbstractGoodGuy> type, World world) {
+    // Required for /summon
     super(type, world);
+  }
+
+  public Av7Cannon(EntityType<? extends AbstractGoodGuy> type, World world, BlockPos baseCenter) {
+    super(type, world);
+
+    this.baseCenter = baseCenter;
   }
 
   @Override
@@ -73,4 +88,14 @@ public class Av7Cannon extends AbstractGoodGuy implements Building, RangedAttack
     }
   }
 
+  @Override
+  public void onDeath(DamageSource damageSource) {
+    GameInstance.getCurrent().buildingTrackerTable.remove(this.baseCenter, null);
+    super.onDeath(damageSource);
+  }
+
+  @Override
+  protected Vector3f getPassengerAttachmentPos(Entity passenger, EntityDimensions dimensions, float scaleFactor) {
+    return new Vector3f(-1f, dimensions.height - 1, -1.2f);
+  }
 }
