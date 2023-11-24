@@ -19,6 +19,7 @@ import net.minecraft.entity.ai.goal.ActiveTargetGoal;
 import net.minecraft.entity.ai.goal.ProjectileAttackGoal;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Items;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -98,4 +99,19 @@ public class Av7Cannon extends AbstractGoodGuy implements Building, RangedAttack
   protected Vector3f getPassengerAttachmentPos(Entity passenger, EntityDimensions dimensions, float scaleFactor) {
     return new Vector3f(-1f, dimensions.height - 1, -1.2f);
   }
+
+  @Override
+  public LivingEntity getControllingPassenger() {
+    Entity rider = this.getFirstPassenger();
+    if (rider instanceof PlayerEntity) {
+      PlayerEntity player = ((PlayerEntity) rider);
+
+      // FIXME: Use a different item.
+      if (player.isHolding(Items.ACACIA_BOAT)) {
+        return player;
+      }
+    }
+    return super.getControllingPassenger();
+  }
+
 }
